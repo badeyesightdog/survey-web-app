@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>survey</title>
+
+</head>
+<body>
+<ul>
+	<li>input 추가버튼 클릭해서 input 2개씩 추가하기.</li>
+	<li>input에 입력하면 하단에 총액계산 변동</li>
+	<li>input에 입력한 수치 validation 검사하기</li>
+</ul>
+<form action="" class="form">
+	<button type="button" class="btn-add">Add additional input spaces</button>
+</form>
+<div class="total"></div>
+<script src="jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+	var click = 0;
+
+	function createText(txt){
+		var text = document.createTextNode(txt);
+		return text;
+	}
+
+	function createTag(elem, txt, attr){
+		var target = document.createElement(elem);
+
+		for (var i in attr) {
+			target.setAttribute(i, attr[i]);
+		}
+
+		if(txt != null){
+			target.innerHTML = txt;
+		}
+
+		return target;
+	}
+
+//	var added = $('<div class="added"><input type="text"><input type="text"></div>');
+
+	$('.btn-add').on('click', function(){
+		// click += 1;
+		++click;
+
+		// var addedSpan = createTag('span', 'test', { 'class': 'test' });
+
+		// var addedLabTxt = document.createElement('label');
+		// 	addedLabTxt.setAttribute('for', 'lab-txt' + click);
+		// 	addedLabTxt.innerHTML = 'name of test';
+
+		var addedLabTxt = createTag('label', 'Name of test', { 'for': 'lab-txt' + click });
+
+		// var addedLabNum = document.createElement('label');
+		// 	addedLabNum.setAttribute('for', 'lab-num' + click);
+		// 	addedLabNum.innerHTML = 'money spent';
+
+		var addedLabNum = createTag('label', 'Money spent', { 'for': 'lab-num' + click });
+
+		// var addedInputTxt = document.createElement('input');
+		// 	addedInputTxt.setAttribute('type', 'text');
+		// 	addedInputTxt.setAttribute('class', 'input-txt');
+		// 	addedInputTxt.setAttribute('id', 'txt' + click);
+
+		var addedInputTxt = createTag('input', null, { 'type': 'text', 'class': 'input-txt', 'id': 'txt-' + click });
+
+		// var addedInputNum = document.createElement('input');
+		// 	addedInputNum.setAttribute('type', 'text');
+		// 	addedInputNum.setAttribute('class', 'input-num');
+		// 	addedInputNum.setAttribute('id', 'num' + click);
+
+		var addedInputNum = createTag('input', null, { 'type': 'text', 'class': 'input-num', 'id': 'num-' + click });
+
+		// var addedBox = document.createElement('div');
+		// 	addedBox.setAttribute('class', 'addedBox');
+		// 	addedBox.appendChild(addedLabTxt);
+		// 	addedBox.appendChild(addedInputTxt);
+		// 	addedBox.appendChild(addedLabNum);
+		// 	addedBox.appendChild(addedInputNum);
+			// addedBox.appendChild(addedSpan);
+
+		var addedBox = createTag('div', null, { 'class': 'addedBox' });
+			addedBox.appendChild(addedLabTxt);
+			addedBox.appendChild(addedInputTxt);
+			addedBox.appendChild(addedLabNum);
+			addedBox.appendChild(addedInputNum);
+
+		// $('.form').append(added);
+		$('.form').append(addedBox);
+
+	});
+});
+</script>
+</body>
+</html>
